@@ -1,5 +1,3 @@
-var Set = require("es6-set");
-
 const prettyPrint = (result) => {
     const content = Object.entries(result)
         .map(([key, value]) =>`  ${key}: ${value}`)

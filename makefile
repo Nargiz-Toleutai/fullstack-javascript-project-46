@@ -5,4 +5,6 @@ gendiff_help:
 lint:
 	npx eslint .
 test:
-	node __tests__/toGendiff.test.js 
+	npm test
+test-coverage:
+	npm test -- --coverage --coverageProvider=v8
