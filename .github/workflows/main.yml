@@ -6,17 +6,26 @@ on:
       - '**'
     tags:
       - '**'
+env:
+  CI: true
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - name: Hexlet project check
-        uses: hexlet/project-action@release
-        with:
-          hexlet-id: ${{ secrets.MAINTAINABILITY_CODECLIMATE }}, ${{ secrets.TEST_COVERAGE_CODECLIMATE }}
-      - run: make setup
-      - run: make test
-      - run: make lint 
-          
+    - uses: actions/checkout@v3
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+    - run: make install
+    - run: make lint
+    - run: make test
+    - name: Test & publish code coverage  
+      uses: paambaati/codeclimate-action@v3.2.0
+      env:
+        TEST_COVERAGE_CODECLIMATE_ID: ${{ secrets.TEST_COVERAGE_CODECLIMATE }}, ${{ secrets.MAINTAINABILITY_CODECLIMATE }}
+      with:
+        coverageCommand: make test-coverage
+        debug: true
