@@ -5,8 +5,10 @@
   "main": "src/index.js",
   "type": "module",
   "scripts": {
-    "test": "node --experimental-vm-modules ./node_modules/.bin/jest",
-    "watch": "node --experimental-vm-modules ./node_modules/.bin/jest --watch"
+    "test": "npx jest"
+  },
+  "simple-git-hooks": {
+    "pre-push": "make lint"
   },
   "repository": {
     "type": "git",
