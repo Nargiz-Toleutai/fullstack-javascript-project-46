@@ -16,7 +16,7 @@ jobs:
         uses: hexlet/project-action@release
         with:
           hexlet-id: ${{ secrets.MAINTAINABILITY_CODECLIMATE }}
-          hexlet-id: ${{ secrets.TEST_COVERAGE_CODECLIMATE }}
+          hexlet-id1: ${{ secrets.TEST_COVERAGE_CODECLIMATE }}
       - run: make setup
       - run: make test
       - run: make lint 
