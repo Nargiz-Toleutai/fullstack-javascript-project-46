@@ -1,0 +1,23 @@
+name: main
+
+on:
+  push:
+    branches:
+      - '**'
+    tags:
+      - '**'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Hexlet project check
+        uses: hexlet/project-action@release
+        with:
+          maintainability: ${{ secrets.MAINTAINABILITY_CODECLIMATE }}
+          test-coverage: ${{ secrets.TEST_COVERAGE_CODECLIMATE }}
+      - run: make setup
+      - run: make test
+      - run: make lint 
+          
