@@ -7,13 +7,6 @@ import path from "path";
 
 const currentWorkingDir = process.cwd();
 
-const prettyPrint = (result) => {
-    const content = Object.entries(result)
-        .map(([key, value]) =>`  ${key}: ${value}`)
-        .join('\n');
-    return `{\n${content}\n}`;
-};
-
 program
   .version('0.0.1')
   .description('Compares two configuration files and shows a difference.')
@@ -30,7 +23,7 @@ program
     const myObj2 = JSON.parse(file2);
 
     const result = genDiff(myObj1, myObj2);
-    console.log(prettyPrint(result));
+    console.log(result);
   })
 
 program.parse();
