@@ -1,11 +1,10 @@
 module.exports = {
     "env": {
-        "browser": true,
-        "es2021": true
+        "node": true,
     },
     "extends": [
         "eslint:recommended",
-        "plugin:react/recommended"
+        "plugin:jest/recommended"
     ],
     "overrides": [
     ],
@@ -13,9 +12,16 @@ module.exports = {
         "ecmaVersion": "latest",
         "sourceType": "module"
     },
-    "plugins": [
-        "react"
-    ],
+
     "rules": {
+        "no-console": 0,
+        // "import/extensions": [
+        //     "error",
+        //     "ignorePackages",
+        //     { "js": "always" }
+        // ],
+        "no-underscore-dangle": [ 2, { "allow": [ "__filename", "__dirname" ]}]
     }
 }
+
+
