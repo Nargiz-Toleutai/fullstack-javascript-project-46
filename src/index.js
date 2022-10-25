@@ -1,4 +1,14 @@
-//var Set = require("es6-set");
+import parse from '../src/parsers.js';
+import fs from "fs";
+import path from "path";
+import calculateDiff from "../src/calculateDiff.js";
+import YAML from 'yamljs';
+
+const getParesedData = (file) => {
+    const data = fs.readFileSync(path.resolve(process.cwd(), '__fixtures__', file), 'utf-8');
+    const dataType = path.extname(file).substring(1);
+    return parse(data, dataType);
+};
 
 const prettyPrint = (result) => {
     const content = Object.entries(result)
@@ -7,29 +17,25 @@ const prettyPrint = (result) => {
     return `{\n${content}\n}`;
 };
 
-const genDiff = (myObj1, myObj2) => {
-    const allKeys = [
-        ...new Set([...Object.keys(myObj1), ...Object.keys(myObj2)])
-    ];
-    allKeys.sort();
-    return prettyPrint(allKeys.reduce((result, key) => {
-        const val1 = myObj1[key];
-        const val2 = myObj2[key];
+const createFormat = (file, formatName) => {
+    console.log(typeof file)
+    switch (formatName) {
+      case 'json': {
+        return prettyPrint(file);
+      }
+      case 'yml': {
+        return YAML.stringify(file);
+      }
+      default:
+        throw new Error('Invalid format.');
+    }
+  };
 
-        if (val1 === undefined) {
-            result[`+ ${key}`] = val2;
-        } else if (val2 === undefined) {
-            result[`- ${key}`] = val1;
-        } else if (val1 !== val2) {
-            result[`- ${key}`] = val1;
-            result[`+ ${key}`] = val2;
-        } else {
-            result[`  ${key}`] = val2;
-        }
-
-        return result;
-    }, {}));
+export default (file1, file2, format) => {
+    const diff = calculateDiff(getParesedData(file1), getParesedData(file2));
+    return createFormat(diff, format);
 };
 
 
-export default genDiff;
+
+
