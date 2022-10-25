@@ -9,12 +9,12 @@ const getParesedData = (file) => {
     return parse(data, dataType);
 };
 
-const prettyPrint = (result) => {
-    const content = Object.entries(result)
-        .map(([key, value]) =>`  ${key}: ${value}`)
-        .join('\n');
-    return `{\n${content}\n}`;
-};
+// const prettyPrint = (result) => {
+//     const content = Object.entries(result)
+//         .map(([key, value]) =>`  ${key}: ${value}`)
+//         .join('\n');
+//     return `{\n${content}\n}`;
+// };
 
 // const createFormat = (file, formatName) => {
 //     switch (formatName) {
