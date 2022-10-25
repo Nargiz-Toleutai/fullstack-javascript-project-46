@@ -2,7 +2,6 @@ import parse from '../src/parsers.js';
 import fs from "fs";
 import path from "path";
 import calculateDiff from "../src/calculateDiff.js";
-import YAML from 'yamljs';
 
 const getParesedData = (file) => {
     const data = fs.readFileSync(path.resolve(process.cwd(), '__fixtures__', file), 'utf-8');
@@ -17,23 +16,22 @@ const prettyPrint = (result) => {
     return `{\n${content}\n}`;
 };
 
-const createFormat = (file, formatName) => {
-    console.log(typeof file)
-    switch (formatName) {
-      case 'json': {
-        return prettyPrint(file);
-      }
-      case 'yml': {
-        return YAML.stringify(file);
-      }
-      default:
-        throw new Error('Invalid format.');
-    }
-  };
+// const createFormat = (file, formatName) => {
+//     switch (formatName) {
+//       case 'json': {
+//         return prettyPrint(file);
+//       }
+//       case 'yml': {
+//         return prettyPrint(file);
+//       }
+//       default:
+//         throw new Error('Invalid format.');
+//     }
+//   };
 
-export default (file1, file2, format) => {
+export default (file1, file2) => {
     const diff = calculateDiff(getParesedData(file1), getParesedData(file2));
-    return createFormat(diff, format);
+    return diff;
 };
 
 

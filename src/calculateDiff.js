@@ -1,9 +1,17 @@
+const prettyPrint = (result) => {
+    const content = Object.entries(result)
+        .map(([key, value]) =>`  ${key}: ${value}`)
+        .join('\n');
+    return `{\n${content}\n}`;
+};
+
 const genDiff = (myObj1, myObj2) => {
     const allKeys = [
         ...new Set([...Object.keys(myObj1), ...Object.keys(myObj2)])
     ];
+
     allKeys.sort();
-    return allKeys.reduce((result, key) => {
+    return prettyPrint(allKeys.reduce((result, key) => {
         const val1 = myObj1[key];
         const val2 = myObj2[key];
         if (val1 === undefined) {
@@ -18,7 +26,7 @@ const genDiff = (myObj1, myObj2) => {
         }
 
         return result;
-    }, {});
+    }, {}));
 };
 
 
