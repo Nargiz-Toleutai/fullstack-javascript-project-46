@@ -28,3 +28,7 @@
 ### Flat File Comparison (YML)
 
 [![asciicast](https://asciinema.org/a/nZwgvLPqKUmHEQYVpYW2Asr8e.svg)](https://asciinema.org/a/nZwgvLPqKUmHEQYVpYW2Asr8e)
+
+### Nested File Comparison (JSON & YAML)
+
+[![asciicast](https://asciinema.org/a/Wd5dAw0Ocei2OKoRYGAyIFzk8.svg)](https://asciinema.org/a/Wd5dAw0Ocei2OKoRYGAyIFzk8)

@@ -2,6 +2,7 @@ import parse from '../src/parsers.js';
 import fs from "fs";
 import path from "path";
 import calculateDiff from "../src/calculateDiff.js";
+import stylish from '../formatter/stylish.js';
 
 const getParesedData = (file) => {
     const data = fs.readFileSync(path.resolve(process.cwd(), '__fixtures__', file), 'utf-8');
@@ -9,30 +10,25 @@ const getParesedData = (file) => {
     return parse(data, dataType);
 };
 
-// const prettyPrint = (result) => {
-//     const content = Object.entries(result)
-//         .map(([key, value]) =>`  ${key}: ${value}`)
-//         .join('\n');
-//     return `{\n${content}\n}`;
-// };
+const createFormat = (file, formatName) => {
+    switch (formatName) {
+      case 'stylish': {
+        return stylish(file);
+      }
+    //   case '': {
+    //     return prettyPrint(file);
+    //   }
+      default:
+        throw new Error('Invalid format.');
+    }
+  };
 
-// const createFormat = (file, formatName) => {
-//     switch (formatName) {
-//       case 'json': {
-//         return prettyPrint(file);
-//       }
-//       case 'yml': {
-//         return prettyPrint(file);
-//       }
-//       default:
-//         throw new Error('Invalid format.');
-//     }
-//   };
-
-export default (file1, file2) => {
+const getDiff = (file1, file2, format = 'stylish') => {
     const diff = calculateDiff(getParesedData(file1), getParesedData(file2));
-    return diff;
+    return createFormat(diff, format);
 };
+
+export default getDiff;
 
 
 

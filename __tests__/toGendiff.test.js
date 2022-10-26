@@ -1,33 +1,42 @@
 import { fileURLToPath } from 'url';
 import fs from 'fs';
 import path from 'path';
-import calculateDiff from '../src/calculateDiff';
-import parse from '../src/parsers.js';
+import getDiff from '../src/index.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const getFixturePath = (name) => path.join(__dirname, '..', '__fixtures__', name);
+const readFile = (filepath) => fs.readFileSync(getFixturePath(filepath), 'utf-8').trim();
 
-const expected = `{
-  - follow: false
-    host: hexlet.io
-  - proxy: 123.234.53.22
-  - timeout: 50
-  + timeout: 20
-  + verbose: true
-}`;
+// const expected = `{
+//   - follow: false
+//     host: hexlet.io
+//   - proxy: 123.234.53.22
+//   - timeout: 50
+//   + timeout: 20
+//   + verbose: true
+// }`;
 
-const formats = ['json', 'yml'];
 
-test.each(formats)('%s', (format) => {
-  const filePath1 = getFixturePath(`file1.${format}`);
-  const filePath2 = getFixturePath(`file2.${format}`);
-  
-  const file1 = parse(fs.readFileSync(filePath1).toString(), format);
-  const file2 = parse(fs.readFileSync(filePath2).toString(), format);
+const files = [
+  ['file1.json', 'file2.json', 'stylish'],
+  ['file1.yaml', 'file2.yaml'],
+  // ['file1.json', 'file2.json', 'plain'],
+  // ['file1.yml', 'file2.yml', 'plain'],
+  // ['file1.json', 'file2.json', 'json'],
+  // ['file1.yml', 'file2.yml', 'json'],
+];
 
-  const actual = calculateDiff(file1, file2);
-  console.log({actual})
-  expect(actual).toEqual(expected.trim());
+test.each(files)('%s', (file1, file2, format = 'stylish') => {
+  const actual = getDiff(getFixturePath(file1), getFixturePath(file2), format);
+  const expected = (formatter) => {
+    switch (formatter) {
+      case 'stylish':
+        return readFile('result.txt');
+      default:
+        throw new Error(`Unknown type of format: ${formatter}`);
+      }
+    };
+  expect(actual).toEqual(expected(format));
 });
