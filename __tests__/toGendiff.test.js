@@ -24,8 +24,8 @@ const files = [
   ['file1.yaml', 'file2.yaml'],
   ['file1.json', 'file2.json', 'plain'],
   ['file1.yaml', 'file2.yaml', 'plain'],
-  // ['file1.json', 'file2.json', 'json'],
-  // ['file1.yml', 'file2.yml', 'json'],
+  //['file1.json', 'file2.json', 'json'],
+  ['file1.yml', 'file2.yml'],
 ];
 
 test.each(files)('%s', (file1, file2, format = 'stylish') => {
