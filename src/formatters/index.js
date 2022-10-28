@@ -1,20 +1,15 @@
 import stylish from './stylish.js';
 import plain from './plain.js';
 
-const createFormat = (file, formatName) => {
-    switch (formatName) {
-      case 'stylish': {
-        return stylish(file);
-      }
-      case 'plain': {
-        return plain(file);
-      }
-      case 'json': {
-        return stylish(file);
-      }
-      default:
-        throw new Error('Invalid format.');
-    }
-  };
-
-  export default createFormat;
+export default (innerTree, format = stylish) => {
+  switch (format) {
+    case 'stylish':
+      return stylish(innerTree);
+    case 'plain':
+      return plain(innerTree);
+    case 'json':
+      return stylish(innerTree);
+    default:
+      throw new Error(`Unknown format: ${format}`);
+  }
+};
