@@ -1,7 +1,7 @@
-import parse from '../src/parsers.js';
+import parse from './parsers.js';
 import fs from "fs";
 import path from "path";
-import calculateDiff from "../src/calculateDiff.js";
+import calculateDiff from "./calculateDiff.js";
 import createFormat from '../formatter/index.js';
 
 const getParesedData = (file) => {
