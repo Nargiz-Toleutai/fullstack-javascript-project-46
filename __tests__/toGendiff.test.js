@@ -29,8 +29,8 @@ test.each(files)('%s', (file1, file2, format = 'stylish') => {
         return readFile('stylish.txt');
       case 'plain':
         return readFile('plain.txt');
-      case 'json':
-        return readFile('json.txt');
+      // case 'json':
+      //   return readFile('json.txt');
       default:
         throw new Error(`Unknown type of format: ${formatter}`);
       }
