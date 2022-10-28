@@ -2,7 +2,7 @@ import parse from './parsers.js';
 import fs from "fs";
 import path from "path";
 import calculateDiff from "./calculateDiff.js";
-import createFormat from '../formatter/index.js';
+import createFormat from './formatters/index.js';
 
 const getParesedData = (file) => {
     const data = fs.readFileSync(path.resolve(process.cwd(), '__fixtures__', file), 'utf-8');

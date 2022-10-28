@@ -1,5 +1,5 @@
 import stylish from './stylish.js';
-import plain from './plain';
+import plain from './plain.js';
 
 const createFormat = (file, formatName) => {
     switch (formatName) {
@@ -8,6 +8,9 @@ const createFormat = (file, formatName) => {
       }
       case 'plain': {
         return plain(file);
+      }
+      case 'json': {
+        return stylish(file);
       }
       default:
         throw new Error('Invalid format.');

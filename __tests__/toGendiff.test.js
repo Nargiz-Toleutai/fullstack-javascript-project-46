@@ -20,8 +20,10 @@ const readFile = (filepath) => fs.readFileSync(getFixturePath(filepath), 'utf-8'
 
 
 const files = [
-  ['file1.json', 'file2.json', 'stylish'],
+  ['filepath1.json', 'filepath2.json', 'json'],
+  ['file1.json', 'file2.json'],
   ['file1.yaml', 'file2.yaml'],
+  
   ['file1.json', 'file2.json', 'plain'],
   ['file1.yaml', 'file2.yaml', 'plain'],
   //['file1.json', 'file2.json', 'json'],
@@ -33,9 +35,11 @@ test.each(files)('%s', (file1, file2, format = 'stylish') => {
   const expected = (formatter) => {
     switch (formatter) {
       case 'stylish':
-        return readFile('json.txt');
+        return readFile('stylish.txt');
       case 'plain':
         return readFile('plain.txt');
+      case 'json':
+        return readFile('json.txt');
       default:
         throw new Error(`Unknown type of format: ${formatter}`);
       }
