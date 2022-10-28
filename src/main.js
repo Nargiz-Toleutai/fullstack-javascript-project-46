@@ -10,7 +10,7 @@ const getParesedData = (file) => {
     return parse(data, dataType);
 };
 
-const getDiff = (file1, file2, format = 'stylish') => {
+const getDiff = (file1, file2, format) => {
     const diff = calculateDiff(getParesedData(file1), getParesedData(file2));
     return createFormat(diff, format);
 };
