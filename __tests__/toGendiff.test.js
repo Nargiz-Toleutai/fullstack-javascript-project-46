@@ -1,23 +1,13 @@
 import { fileURLToPath } from 'url';
 import fs from 'fs';
 import path from 'path';
-import getDiff from '../src/main.js';
+import getDiff from '../src/index.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const getFixturePath = (name) => path.join(__dirname, '..', '__fixtures__', name);
 const readFile = (filepath) => fs.readFileSync(getFixturePath(filepath), 'utf-8').trim();
-
-// const expected = `{
-//   - follow: false
-//     host: hexlet.io
-//   - proxy: 123.234.53.22
-//   - timeout: 50
-//   + timeout: 20
-//   + verbose: true
-// }`;
-
 
 const files = [
   ['filepath1.json', 'filepath2.json', 'json'],
