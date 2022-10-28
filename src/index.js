@@ -3,6 +3,7 @@ import fs from "fs";
 import path from "path";
 import calculateDiff from "../src/calculateDiff.js";
 import stylish from '../formatter/stylish.js';
+import plain from '../formatter/plain.js';
 
 const getParesedData = (file) => {
     const data = fs.readFileSync(path.resolve(process.cwd(), '__fixtures__', file), 'utf-8');
@@ -15,9 +16,9 @@ const createFormat = (file, formatName) => {
       case 'stylish': {
         return stylish(file);
       }
-    //   case '': {
-    //     return prettyPrint(file);
-    //   }
+      case 'plain': {
+        return plain(file);
+      }
       default:
         throw new Error('Invalid format.');
     }

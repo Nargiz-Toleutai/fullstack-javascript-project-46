@@ -1,70 +1,28 @@
 import _ from 'lodash';
-// const prettyPrint = (result) => {
-//     const content = Object.entries(result)
-//         .map(([key, value]) =>`  ${key}: ${value}`)
-//         .join('\n');
-//     return `{\n${content}\n}`;
-// };
 
-// const genDiff = (myObj1, myObj2) => {
-//     const allKeys = [
-//         ...new Set([...Object.keys(myObj1), ...Object.keys(myObj2)])
-//     ];
-
-//     allKeys.sort();
-//     return prettyPrint(allKeys.reduce((result, key) => {
-//         const val1 = myObj1[key];
-//         const val2 = myObj2[key];
-//         if (val1 === undefined) {
-//             result[`+ ${key}`] = val2;
-//         } else if (val2 === undefined) {
-//             result[`- ${key}`] = val1;
-//         } else if (val1 !== val2) {
-//             result[`- ${key}`] = val1;
-//             result[`+ ${key}`] = val2;
-//         } else {
-//             result[`  ${key}`] = val2;
-//         }
-
-//         return result;
-//     }, {}));
-// };
-
-
-const genDiff = (myObj1, myObj2) => {
-    const allKeys = [
-      ...new Set([...Object.keys(myObj1), ...Object.keys(myObj2)]),
-    ];
-    allKeys.sort();
-
-    const processObj = (obj)=>_.isObject(obj) ?
-        Object.entries(obj).reduce((res, [key, val])=>{
-            res[`  ${key}`] = processObj(val);
-            return res;
-        }, {}) : obj;
-    
-    return allKeys.reduce((result, key) => {
-      const val1 = myObj1[key];
-      const val2 = myObj2[key];
-
-      console.log({key, val1, val2})
-
-      if (val1 === undefined) {
-        result[`+ ${key}`] = processObj(val2);
-      } else if (val2 === undefined) {
-        result[`- ${key}`] = processObj(val1);
-      } else if (_.isObject(val1) && _.isObject(val2)) {
-        result[`  ${key}`] = genDiff(val1, val2);
-      } else if (val1 !== val2) {
-        result[`- ${key}`] = processObj(val1);
-        result[`+ ${key}`] = processObj(val2);
-      } else {
-        result[`  ${key}`] = processObj(val2);
-      }
-      return result;
-    }, {});
-  };
-
+const genDiff = (data1, data2) => {
+  const keys = Object.keys({ ...data1, ...data2 });
+  const sortedKeys = _.sortBy(keys);
+  return sortedKeys.map((key) => {
+    const value1 = data1[key];
+    const value2 = data2[key];
+    if (!_.has(data1, key)) {
+      return { type: 'add', key, val: value2 };
+    }
+    if (!_.has(data2, key)) {
+      return { type: 'remove', key, val: value1 };
+    }
+    if (_.isPlainObject(value1) && _.isPlainObject(value2)) {
+      return { type: 'recursion', key, children: genDiff(value1, value2) };
+    }
+    if (!_.isEqual(value1, value2)) {
+      return {
+        type: 'updated', key, val1: value1, val2: value2,
+      };
+    }
+    return { type: 'same', key, val: value1 };
+  });
+};
 
 export default genDiff;
 
