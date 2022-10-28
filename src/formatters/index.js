@@ -1,7 +1,7 @@
 import stylish from './stylish.js';
 import plain from './plain.js';
 
-export default (innerTree, format = 'stylish') => {
+export default (innerTree, format) => {
   switch (format) {
     case 'stylish':
       return stylish(innerTree);

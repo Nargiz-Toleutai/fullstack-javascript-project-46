@@ -11,13 +11,14 @@ const readFile = (filepath) => fs.readFileSync(getFixturePath(filepath), 'utf-8'
 
 const files = [
   ['filepath1.json', 'filepath2.json', 'json'],
-  ['file1.json', 'file2.json'],
-  ['file1.yaml', 'file2.yaml'],
-  
+  ['file1.json', 'file2.json', 'stylish'],
+  ['file1.yaml', 'file2.yaml', 'stylish'],
+  ['file1.yml', 'file2.yml', 'stylish'],
+
   ['file1.json', 'file2.json', 'plain'],
   ['file1.yaml', 'file2.yaml', 'plain'],
   //['file1.json', 'file2.json', 'json'],
-  ['file1.yml', 'file2.yml'],
+  ['file1.yml', 'file2.yml', 'plain'],
 ];
 
 test.each(files)('%s', (file1, file2, format = 'stylish') => {
