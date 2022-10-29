@@ -11,10 +11,8 @@ const getParesedData = (file) => {
 };
 
 const getDiff = (file1, file2, format = 'stylish') => {
-    console.log({format})
     const diff = calculateDiff(getParesedData(file1), getParesedData(file2));
-    console.log({diff})
-    console.log({a: createFormat(diff, format)})
+    console.log({format})
     return createFormat(diff, format);
 };
 
