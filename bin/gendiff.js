@@ -10,4 +10,3 @@ program
   .action((path1, path2, options) => console.log(genDiff(path1, path2, options.format)));
 
 program.parse();
-

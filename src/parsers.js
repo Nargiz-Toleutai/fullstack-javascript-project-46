@@ -7,7 +7,6 @@ const parserFormat = {
 };
 
 export default (data, dataType) => {
-    const parse = parserFormat[dataType];
-    return parse(data);
+  const parse = parserFormat[dataType];
+  return parse(data);
 };
-
