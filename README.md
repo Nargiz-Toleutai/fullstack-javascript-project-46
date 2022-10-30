@@ -33,7 +33,11 @@
 
 [![asciicast](https://asciinema.org/a/Me5JxDx0udGUVz0H3jclxDqB7.svg)](https://asciinema.org/a/Me5JxDx0udGUVz0H3jclxDqB7)
 
-### Nested File Comparison (JSON & YAML) plain format
+### Nested File Comparison (JSON & YAML) stylish format
 
 [![asciicast](https://asciinema.org/a/d5b9OJVrLasqAo4LMCYkKwhEY.svg)](https://asciinema.org/a/d5b9OJVrLasqAo4LMCYkKwhEY)
+
+### Nested File Comparison (JSON) plain format
+
+[![asciicast](https://asciinema.org/a/alUJz90EtJteiCTrrQNOAc84Z.svg)](https://asciinema.org/a/alUJz90EtJteiCTrrQNOAc84Z)
 
