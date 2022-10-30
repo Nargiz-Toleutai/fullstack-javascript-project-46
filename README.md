@@ -23,17 +23,17 @@
 
 ### Flat File Comparison (JSON)
 
-[![asciicast](https://asciinema.org/a/MXIXXYrHclBIQMTmd5xo6DnMn.svg)](https://asciinema.org/a/MXIXXYrHclBIQMTmd5xo6DnMn)
+[![asciicast](https://asciinema.org/a/HNweVQZyGFRBd7rxZPQf49o8C.svg)](https://asciinema.org/a/HNweVQZyGFRBd7rxZPQf49o8C)
 
 ### Flat File Comparison (YML)
 
-[![asciicast](https://asciinema.org/a/nZwgvLPqKUmHEQYVpYW2Asr8e.svg)](https://asciinema.org/a/nZwgvLPqKUmHEQYVpYW2Asr8e)
+[![asciicast](https://asciinema.org/a/f5PUwLgtufcfGwSFVK6uVgBx9.svg)](https://asciinema.org/a/f5PUwLgtufcfGwSFVK6uVgBx9)
 
-### Nested File Comparison (JSON & YAML) stylish format
+### Nested File Comparison (JSON) stylish format
 
-[![asciicast](https://asciinema.org/a/Wd5dAw0Ocei2OKoRYGAyIFzk8.svg)](https://asciinema.org/a/Wd5dAw0Ocei2OKoRYGAyIFzk8)
+[![asciicast](https://asciinema.org/a/Me5JxDx0udGUVz0H3jclxDqB7.svg)](https://asciinema.org/a/Me5JxDx0udGUVz0H3jclxDqB7)
 
 ### Nested File Comparison (JSON & YAML) plain format
 
-[![asciicast](https://asciinema.org/a/avSXYa7Gf9bK6zjo5bAHEKYo3.svg)](https://asciinema.org/a/avSXYa7Gf9bK6zjo5bAHEKYo3)
+[![asciicast](https://asciinema.org/a/d5b9OJVrLasqAo4LMCYkKwhEY.svg)](https://asciinema.org/a/d5b9OJVrLasqAo4LMCYkKwhEY)
 
