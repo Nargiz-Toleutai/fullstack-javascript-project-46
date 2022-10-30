@@ -15,7 +15,7 @@ const plain = (innerTree) => {
     .map((node) => {
       const property = parent ? `${parent}.${node.key}` : node.key;
       switch (node.type) {
-        case 'add': 
+        case 'add':
           return `Property '${property}' was added with value: ${stringify(node.val)}`;
         case 'remove':
           return `Property '${property}' was removed`;
@@ -27,7 +27,7 @@ const plain = (innerTree) => {
           throw new Error(`This type does not exist: ${node.type}`);
       }
     }).join('\n');
-    return format(innerTree, 0);
-  };
+  return format(innerTree, 0);
+};
 
 export default plain;

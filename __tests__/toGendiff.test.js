@@ -19,8 +19,8 @@ const files = [
   ['filepath1.yml', 'filepath2.yaml'],
 ];
 
-test.each(files)('%s', (file1, file2, format = 'stylish') => {
-  const actual = getDiff(getFixturePath(file1), getFixturePath(file2), format);
+test.each(files)('%s', (file1, file2, formatName = 'stylish') => {
+  const actual = getDiff(getFixturePath(file1), getFixturePath(file2), formatName);
   const expected = (formatter) => {
     switch (formatter) {
       case 'stylish':
@@ -31,11 +31,10 @@ test.each(files)('%s', (file1, file2, format = 'stylish') => {
         return readFile('json.txt');
       default:
         throw new Error(`Unknown type of format: ${formatter}`);
-      }
-    };
-  expect(actual).toEqual(expected(format));
+    }
+  };
+  expect(actual).toEqual(expected(formatName));
 });
-
 
 test('testing throw formatters', () => {
   const a = [{ type: '1' }];
